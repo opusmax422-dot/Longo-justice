@@ -40,7 +40,7 @@
 
 ### **GLENN DUTTON**
 - **Position:** DEA Agent, Miami Field Division
-- **Alias:** Billy Womack
+- 
 - **Charges:** Kidnapping, Attempted Murder, Fraud, Conspiracy, Forgery, Obstruction, Witness Elimination
 - **Max Penalty:** LIFE + 30 years
 
