@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligence Tracking Dashboard - Analysis Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-gray-100">
+    
+    <!-- Header -->
+    <header class="bg-purple-900 text-white py-6 border-b-4 border-purple-600">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl md:text-5xl font-bold text-center">
+                <i class="fas fa-chart-line text-yellow-400"></i>
+                Intelligence Tracking Dashboard
+            </h1>
+            <p class="text-xl text-center mt-2 text-purple-200">
+                Analyzing Collected Surveillance Data
+            </p>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-12 max-w-5xl">
+        
+        <!-- Access Instructions -->
+        <section class="bg-yellow-900/30 border-2 border-yellow-500 rounded-lg p-8 mb-12">
+            <h2 class="text-3xl font-bold text-yellow-400 mb-4">
+                <i class="fas fa-key"></i> How to Access Webhook.site
+            </h2>
+            <p class="text-xl text-gray-300 mb-4">
+                All tracking data is collected at the following webhook URL:
+            </p>
+            <div class="bg-gray-800 rounded-lg p-4 mb-4">
+                <a href="https://webhook.site/31024e4b-cfea-43ed-a656-f006127071a8" 
+                   target="_blank"
+                   class="text-blue-400 hover:text-blue-300 text-lg font-mono break-all">
+                    https://webhook.site/31024e4b-cfea-43ed-a656-f006127071a8
+                </a>
+            </div>
+            <div class="bg-red-900/50 border border-red-500 rounded-lg p-4">
+                <p class="text-red-300 font-bold">
+                    <i class="fas fa-shield-alt"></i> OPSEC WARNING:
+                </p>
+                <p class="text-gray-300 mt-2">
+                    ONLY access this webhook on cellular data, never on potentially compromised WiFi. 
+                    The interceptors may be monitoring your access to tracking systems.
+                </p>
+            </div>
+        </section>
+
+        <!-- Identifying Suspicious Activity -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-red-400 mb-6">
+                <i class="fas fa-user-secret"></i> How to Identify Suspicious Activity
+            </h2>
+            
+            <div class="space-y-6">
+                <div class="bg-gray-800 rounded-lg p-6 border-l-4 border-red-500">
+                    <h3 class="text-2xl font-bold text-red-300 mb-3">
+                        <i class="fas fa-globe"></i> Unknown IP Addresses
+                    </h3>
+                    <p class="text-gray-300 mb-4">
+                        Look for IP addresses that don't match your known devices or locations:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2 ml-4">
+                        <li>IP addresses from government ranges (see IP Analysis section)</li>
+                        <li>IPs from locations you've never visited</li>
+                        <li>Multiple IPs accessing the site in quick succession</li>
+                        <li>IPs that appear repeatedly over days/weeks</li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-800 rounded-lg p-6 border-l-4 border-yellow-500">
+                    <h3 class="text-2xl font-bold text-yellow-300 mb-3">
+                        <i class="fas fa-door-closed"></i> Access to Hidden Pages
+                    </h3>
+                    <p class="text-gray-300 mb-4">
+                        <strong class="text-red-400">CRITICAL:</strong> Any access to these pages is proof of unauthorized surveillance:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2 ml-4">
+                        <li><code class="bg-gray-700 px-2 py-1 rounded">admin-panel-7x9k2m.html</code> — Hidden trap page (NEVER publicly linked)</li>
+                        <li><code class="bg-gray-700 px-2 py-1 rounded">classified-evidence-2026.html</code> — Bait page (NEVER publicly linked)</li>
+                    </ul>
+                    <p class="text-red-300 font-bold mt-4">
+                        These pages are impossible to access without prior knowledge or active surveillance!
+                    </p>
+                </div>
+
+                <div class="bg-gray-800 rounded-lg p-6 border-l-4 border-blue-500">
+                    <h3 class="text-2xl font-bold text-blue-300 mb-3">
+                        <i class="fas fa-robot"></i> Automated User-Agents
+                    </h3>
+                    <p class="text-gray-300 mb-4">
+                        Look for user-agents indicating automated scraping/surveillance:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2 ml-4">
+                        <li>Government monitoring tools (e.g., "GovernmentBot", "LEMonitor")</li>
+                        <li>Headless browsers (e.g., "HeadlessChrome", "PhantomJS")</li>
+                        <li>Web scrapers (e.g., "curl", "wget", "Python-requests")</li>
+                        <li>Unusual or outdated browser versions</li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-800 rounded-lg p-6 border-l-4 border-green-500">
+                    <h3 class="text-2xl font-bold text-green-300 mb-3">
+                        <i class="fas fa-copy"></i> Clone Domain Detection Alerts
+                    </h3>
+                    <p class="text-gray-300 mb-4">
+                        The clone-detector.js script triggers when the site is served from an unauthorized domain:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2 ml-4">
+                        <li>Alert type: <code class="bg-gray-700 px-2 py-1 rounded">CLONE_DETECTED</code></li>
+                        <li>Check the "unauthorizedDomain" field to see where it was hosted</li>
+                        <li>This proves the site is being mirrored/proxied without authorization</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- IP Analysis -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-yellow-400 mb-6">
+                <i class="fas fa-network-wired"></i> IP Analysis
+            </h2>
+            
+            <div class="space-y-6">
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <h3 class="text-2xl font-bold text-blue-300 mb-4">
+                        <i class="fas fa-search"></i> How to do Reverse DNS Lookup
+                    </h3>
+                    <p class="text-gray-300 mb-4">
+                        Reverse DNS can reveal the owner/organization of an IP address:
+                    </p>
+                    <div class="bg-gray-700 rounded-lg p-4 mb-4">
+                        <p class="text-white font-bold mb-2">Method 1: Command Line (Linux/Mac)</p>
+                        <code class="text-green-400">nslookup [IP_ADDRESS]</code><br>
+                        <code class="text-green-400">host [IP_ADDRESS]</code>
+                    </div>
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <p class="text-white font-bold mb-2">Method 2: Online Tools</p>
+                        <ul class="text-gray-300 space-y-2">
+                            <li>• <a href="https://mxtoolbox.com/ReverseLookup.aspx" target="_blank" class="text-blue-400 hover:text-blue-300">MXToolbox Reverse Lookup</a></li>
+                            <li>• <a href="https://www.whatismyip.com/ip-whois-lookup/" target="_blank" class="text-blue-400 hover:text-blue-300">WhatIsMyIP WHOIS</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <h3 class="text-2xl font-bold text-red-300 mb-4">
+                        <i class="fas fa-flag"></i> How to Identify Government IP Ranges
+                    </h3>
+                    <p class="text-gray-300 mb-4">
+                        Government agencies often use specific IP ranges:
+                    </p>
+                    <div class="bg-gray-700 rounded-lg p-4 mb-4">
+                        <p class="text-white font-bold mb-2">Canadian Government Ranges:</p>
+                        <ul class="text-gray-300 space-y-2">
+                            <li>• Look for ASN (Autonomous System Number) ownership</li>
+                            <li>• Check WHOIS data for organization name containing "Government", "RCMP", "Canada", etc.</li>
+                            <li>• Many .gc.ca domains resolve to government IPs</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <p class="text-white font-bold mb-2">US Government Ranges:</p>
+                        <ul class="text-gray-300 space-y-2">
+                            <li>• FBI, DEA typically use government contractor IPs</li>
+                            <li>• Look for "US Dept of Justice", "Federal", "Gov" in WHOIS</li>
+                            <li>• Many .gov domains and associated IPs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-lg p-6">
+                    <h3 class="text-2xl font-bold text-green-300 mb-4">
+                        <i class="fas fa-map-marker-alt"></i> How to Geolocate IPs
+                    </h3>
+                    <p class="text-gray-300 mb-4">
+                        Determine the geographic location of an IP:
+                    </p>
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <p class="text-white font-bold mb-2">Online Geolocation Tools:</p>
+                        <ul class="text-gray-300 space-y-2">
+                            <li>• <a href="https://www.iplocation.net/" target="_blank" class="text-blue-400 hover:text-blue-300">IP Location</a></li>
+                            <li>• <a href="https://ipinfo.io/" target="_blank" class="text-blue-400 hover:text-blue-300">IPInfo.io</a></li>
+                            <li>• <a href="https://www.maxmind.com/en/geoip-demo" target="_blank" class="text-blue-400 hover:text-blue-300">MaxMind GeoIP</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Browser Fingerprint Analysis -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-purple-400 mb-6">
+                <i class="fas fa-fingerprint"></i> Browser Fingerprint Analysis
+            </h2>
+            
+            <div class="bg-gray-800 rounded-lg p-6">
+                <h3 class="text-2xl font-bold text-purple-300 mb-4">
+                    Compare Legitimate vs Suspicious Traffic
+                </h3>
+                <p class="text-gray-300 mb-4">
+                    Browser fingerprints captured by fingerprint.js include:
+                </p>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <p class="text-green-400 font-bold mb-2">
+                            <i class="fas fa-check-circle"></i> Your Legitimate Traffic
+                        </p>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Known user-agent (your device)</li>
+                            <li>• Expected screen resolution</li>
+                            <li>• Your timezone</li>
+                            <li>• Normal plugin list</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <p class="text-red-400 font-bold mb-2">
+                            <i class="fas fa-exclamation-triangle"></i> Suspicious Traffic
+                        </p>
+                        <ul class="text-gray-300 text-sm space-y-1">
+                            <li>• Unknown/automated user-agent</li>
+                            <li>• Unusual screen resolution</li>
+                            <li>• Different timezone than expected</li>
+                            <li>• Empty/suspicious plugin list</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-yellow-900/30 border border-yellow-500 rounded-lg p-4">
+                    <p class="text-yellow-300 font-bold mb-2">
+                        <i class="fas fa-lightbulb"></i> Government-Standard Browser Configs
+                    </p>
+                    <p class="text-gray-300">
+                        Law enforcement often uses standardized browser configurations for investigations. 
+                        Look for patterns like: specific Chrome/Firefox versions, disabled plugins, 
+                        or consistent fingerprints across multiple accesses.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Reconstruction -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-blue-400 mb-6">
+                <i class="fas fa-history"></i> Timeline Reconstruction
+            </h2>
+            
+            <div class="bg-gray-800 rounded-lg p-6">
+                <h3 class="text-2xl font-bold text-blue-300 mb-4">
+                    Cross-Reference Activity
+                </h3>
+                <div class="space-y-4">
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <p class="text-white font-bold mb-2">
+                            <i class="fas fa-clock"></i> Step 1: Note Your Activity
+                        </p>
+                        <p class="text-gray-300">
+                            Keep a log of when YOU access the evidence sites. Note the time, device, and network.
+                        </p>
+                    </div>
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <p class="text-white font-bold mb-2">
+                            <i class="fas fa-search"></i> Step 2: Check Webhook Timestamps
+                        </p>
+                        <p class="text-gray-300">
+                            Compare webhook request timestamps to your activity log. Any requests during times 
+                            you were NOT accessing the site = unauthorized access.
+                        </p>
+                    </div>
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <p class="text-white font-bold mb-2">
+                            <i class="fas fa-exclamation-triangle"></i> Step 3: Identify Access When You Were Offline
+                        </p>
+                        <p class="text-gray-300">
+                            <strong class="text-red-400">CRITICAL:</strong> Any webhook requests when you were 
+                            asleep, offline, or away from devices = proof of unauthorized surveillance.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Evidence Collection -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-green-400 mb-6">
+                <i class="fas fa-camera"></i> Evidence Collection Protocol
+            </h2>
+            
+            <div class="bg-gray-800 rounded-lg p-6">
+                <h3 class="text-2xl font-bold text-green-300 mb-4">
+                    Documenting Suspicious Activity
+                </h3>
+                <div class="space-y-4">
+                    <div class="bg-green-900/20 border-l-4 border-green-500 pl-4 py-3">
+                        <p class="text-white font-bold mb-2">
+                            <i class="fas fa-check"></i> Screenshot ALL Suspicious Requests
+                        </p>
+                        <p class="text-gray-300">
+                            Capture the full webhook request showing IP, timestamp, user-agent, and all data fields.
+                        </p>
+                    </div>
+                    <div class="bg-green-900/20 border-l-4 border-green-500 pl-4 py-3">
+                        <p class="text-white font-bold mb-2">
+                            <i class="fas fa-check"></i> Document IP, Timestamp, User-Agent
+                        </p>
+                        <p class="text-gray-300">
+                            Create a spreadsheet with: Date/Time, IP Address, User-Agent, Page Accessed, Your Activity at That Time
+                        </p>
+                    </div>
+                    <div class="bg-green-900/20 border-l-4 border-green-500 pl-4 py-3">
+                        <p class="text-white font-bold mb-2">
+                            <i class="fas fa-check"></i> Note Which Pages Were Accessed
+                        </p>
+                        <p class="text-gray-300">
+                            Pay special attention to access to hidden trap pages (admin-panel, classified-evidence).
+                        </p>
+                    </div>
+                    <div class="bg-green-900/20 border-l-4 border-green-500 pl-4 py-3">
+                        <p class="text-white font-bold mb-2">
+                            <i class="fas fa-check"></i> Perform Reverse DNS/WHOIS Lookups
+                        </p>
+                        <p class="text-gray-300">
+                            Identify the organization behind suspicious IPs. Screenshot WHOIS results.
+                        </p>
+                    </div>
+                    <div class="bg-green-900/20 border-l-4 border-green-500 pl-4 py-3">
+                        <p class="text-white font-bold mb-2">
+                            <i class="fas fa-check"></i> Save Everything to Evidence Folder
+                        </p>
+                        <p class="text-gray-300">
+                            Organize by date: YYYY-MM-DD_webhook_evidence/
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Critical Indicators -->
+        <section class="bg-red-900/30 border-2 border-red-500 rounded-lg p-8 mb-12">
+            <h2 class="text-3xl font-bold text-red-400 mb-6 text-center">
+                <i class="fas fa-exclamation-circle"></i> CRITICAL INDICATORS OF UNAUTHORIZED SURVEILLANCE
+            </h2>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-gray-800 rounded-lg p-4">
+                    <p class="text-red-300 font-bold mb-2">
+                        🚨 Access to admin-panel-7x9k2m.html
+                    </p>
+                    <p class="text-gray-300 text-sm">
+                        This page is NEVER linked publicly. Any access = proof of surveillance.
+                    </p>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-4">
+                    <p class="text-red-300 font-bold mb-2">
+                        🚨 Government IP Ranges
+                    </p>
+                    <p class="text-gray-300 text-sm">
+                        IPs owned by RCMP, FBI, DEA, or Canadian/US government agencies.
+                    </p>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-4">
+                    <p class="text-red-300 font-bold mb-2">
+                        🚨 Access When You're Offline
+                    </p>
+                    <p class="text-gray-300 text-sm">
+                        Webhook requests at times you were asleep or away from devices.
+                    </p>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-4">
+                    <p class="text-red-300 font-bold mb-2">
+                        🚨 Clone Domain Detection
+                    </p>
+                    <p class="text-gray-300 text-sm">
+                        Alerts showing site served from unauthorized domains = active mirroring.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <section class="text-center">
+            <a href="index.html" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition mr-4">
+                <i class="fas fa-home"></i> Back to Evidence
+            </a>
+            <a href="OPERATION_HONEYPOT_GUIDE.md" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition">
+                <i class="fas fa-book"></i> View Operations Guide
+            </a>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black text-gray-400 text-center py-6 mt-12">
+        <p>Intelligence Tracking Dashboard | Francesco Longo v. Crown</p>
+        <p class="mt-2 text-red-400">OPSEC: Only access on cellular data</p>
+    </footer>
+
+</body>
+</html>
